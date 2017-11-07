@@ -1,4 +1,5 @@
 
+import Model.DeliveryMan;
 import java.util.Scanner;
 
 /*
@@ -13,11 +14,12 @@ import java.util.Scanner;
  */
 public class Details extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Details
-     */
+    
     public Details() {
         initComponents();
+        DeliveryMan d = new DeliveryMan();
+        d.setName("Cheong Wei Kit");
+        jTextField1.setText(d.getName());
     }
 
     /**
