@@ -17,7 +17,7 @@ public class deliverymenJobDetails extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Delivery Status");
+        jLabel1.setText("Delivery Details");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
