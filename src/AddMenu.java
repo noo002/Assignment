@@ -1,6 +1,6 @@
 
 import Model.MenuItem;
-import Model.MenuTableModel;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 public class AddMenu extends javax.swing.JFrame {
 
     List<MenuItem> menuItem = new ArrayList<>();
-    MenuTableModel menuTbl = new MenuTableModel();
+  
     String name,category,description;
     double price;
 
