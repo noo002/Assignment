@@ -1,20 +1,27 @@
 
 import Model.MenuItem;
+import Model.MenuTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class AddMenu extends javax.swing.JFrame {
 
     List<MenuItem> menuItem = new ArrayList<>();
+    MenuTableModel menuTbl = new MenuTableModel();
+    String name,category,description;
+    double price;
 
     public AddMenu() {
         initComponents();
         setTitle("Add Menu");
-        setSize(700,500);
+        setSize(800,500);
         setLocationRelativeTo(null);
-        jtaList.setEditable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -29,8 +36,6 @@ public class AddMenu extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaDescription = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtaList = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jbtAdd = new javax.swing.JButton();
@@ -44,16 +49,15 @@ public class AddMenu extends javax.swing.JFrame {
         jcbCategory = new javax.swing.JComboBox<>();
         jlblDescription = new javax.swing.JLabel();
         jlblTitle = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jbtEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jtaDescription.setColumns(20);
         jtaDescription.setRows(5);
         jScrollPane1.setViewportView(jtaDescription);
-
-        jtaList.setColumns(20);
-        jtaList.setRows(5);
-        jScrollPane2.setViewportView(jtaList);
 
         jLabel2.setText("Menu :");
 
@@ -87,48 +91,77 @@ public class AddMenu extends javax.swing.JFrame {
 
         jlblTitle.setText("Add Menu");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Price", "Category", "Description"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        jbtEdit.setText("Edit");
+        jbtEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtEditActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jlblName)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jlblCategory)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jcbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jlblPrice)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jlblDescription)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jbtAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtReset)))
-                .addGap(26, 26, 26)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jlblName)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jlblCategory)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jcbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jlblPrice)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jtfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jlblDescription)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jbtAdd)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtReset)))
+                        .addGap(30, 30, 30)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jbtEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(jlblTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(296, 296, 296)
+                        .addComponent(jlblTitle)))
+                .addGap(233, 233, 233))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,15 +190,19 @@ public class AddMenu extends javax.swing.JFrame {
                                 .addGap(35, 35, 35)
                                 .addComponent(jlblDescription)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtAdd)
-                            .addComponent(jbtReset))))
-                .addGap(0, 22, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jbtAdd)
+                                    .addComponent(jbtReset))
+                                .addGap(38, 38, 38))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtEdit)
+                                .addGap(34, 34, 34)))))
+                .addGap(48, 48, 48))
         );
 
         pack();
@@ -173,16 +210,18 @@ public class AddMenu extends javax.swing.JFrame {
 
     private void jbtAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAddActionPerformed
         //retrieve items from GUI
-        String name = jtfName.getText();
-        double price = Double.parseDouble(jtfPrice.getText());
-        String category = jcbCategory.getSelectedItem().toString();
-        String description = jtaDescription.getText();
-        // insert those items into List
+         name = jtfName.getText();
+         price = Double.parseDouble(jtfPrice.getText());
+         category = jcbCategory.getSelectedItem().toString();
+        description = jtaDescription.getText();
+        // insert those items into Jtable
         MenuItem menu = new MenuItem(name,price,category,description);
         menuItem.add(menu);
+        addRowToJTable();
         //print out from List
-        jtaList.setText("List : \n" + formatList(menuItem));
-
+        //jtaList.setText("List : \n" + formatList(menuItem));
+       //print to Jtable
+       //menuTbl.addRows(menu);
     }//GEN-LAST:event_jbtAddActionPerformed
 
     private void jbtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtResetActionPerformed
@@ -191,13 +230,44 @@ public class AddMenu extends javax.swing.JFrame {
         jtaDescription.setText("");
         jcbCategory.setSelectedIndex(0);
     }//GEN-LAST:event_jbtResetActionPerformed
-public static String formatList(List menuItem){
+
+    private void jbtEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEditActionPerformed
+         if(jTable1.getSelectedRow() >=0){
+        String menuName = JOptionPane.showInputDialog("Enter the menu name : ");
+         String price = JOptionPane.showInputDialog("Enter the price : ");
+         int categoryIndex = JOptionPane.showConfirmDialog(null, jcbCategory, "Category ", JOptionPane.OK_CANCEL_OPTION);
+         String category = jcbCategory.getSelectedItem().toString();
+         String description = JOptionPane.showInputDialog("Enter the description : ");
+         //change data on the JTable
+         jTable1.getModel().setValueAt(menuName, jTable1.getSelectedRow(), 0);
+         jTable1.getModel().setValueAt(price, jTable1.getSelectedRow(), 1);
+        jTable1.getModel().setValueAt(category, jTable1.getSelectedRow(),2);
+         jTable1.getModel().setValueAt(description, jTable1.getSelectedRow(), 3);
+         }
+         else{
+             JOptionPane.showMessageDialog(null, "Select an item which you want to edit");
+         }
+    }//GEN-LAST:event_jbtEditActionPerformed
+public void addRowToJTable(){
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    Object rowData[] = new Object[4];
+    for(int i=0;i<menuItem.size();i++){
+        rowData[0] = menuItem.get(i).getMenuName();
+        rowData[1] = menuItem.get(i).getPrice();
+        rowData[2] = menuItem.get(i).getCategory();
+        rowData[3] = menuItem.get(i).getDescription();
+        model.addRow(rowData);
+    }
+    menuItem.clear();
+    }
+
+    /*public static String formatList(List menuItem){
          String outputStr = "";
     for (int i = 0; i < menuItem.size(); ++i) {
       outputStr += (i+1) + ". " + menuItem.get(i);
     }
     return outputStr;
-    }
+    }*/
     /**
      * @param args the command line arguments
      */
@@ -237,9 +307,11 @@ public static String formatList(List menuItem){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtAdd;
+    private javax.swing.JButton jbtEdit;
     private javax.swing.JButton jbtReset;
     private javax.swing.JComboBox<String> jcbCategory;
     private javax.swing.JLabel jlblCategory;
@@ -248,7 +320,6 @@ public static String formatList(List menuItem){
     private javax.swing.JLabel jlblPrice;
     private javax.swing.JLabel jlblTitle;
     private javax.swing.JTextArea jtaDescription;
-    private javax.swing.JTextArea jtaList;
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfPrice;
     // End of variables declaration//GEN-END:variables
