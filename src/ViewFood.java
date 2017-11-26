@@ -1,6 +1,7 @@
 
 import Model.MenuItem;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -18,13 +19,13 @@ import javax.swing.table.TableRowSorter;
  */
 public class ViewFood extends javax.swing.JFrame {
     List<MenuItem> menuItem = new ArrayList<>();
-   
     public ViewFood() {
         initComponents();
         setTitle("View Food");
         setSize(700,500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        populateTable();
     }
 
     /**
@@ -132,13 +133,39 @@ public class ViewFood extends javax.swing.JFrame {
          String sFoodName = jtfFoodName.getText();
         filterJTable(sFoodName);
     }//GEN-LAST:event_jbtSearchActionPerformed
-
+public void populateTable(){
+    // This function to insert data into table first
+    MenuItem menu = new MenuItem("Chicken Chop",10,"Chicken","Fresh and delicious");
+    MenuItem menu1 = new MenuItem("Fish Chop",11,"Fish","Okok");
+    MenuItem menu2 = new MenuItem("Pork Chop",12,"Pork","Fine");
+    menuItem.add(menu);
+    menuItem.add(menu1);
+    menuItem.add(menu2);
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    Object rowData[] = new Object[4];
+    for(int i=0;i<menuItem.size();i++){
+        rowData[0] = menuItem.get(i).getMenuName();
+        rowData[1] = menuItem.get(i).getPrice();
+        rowData[2] = menuItem.get(i).getCategory();
+        rowData[3] = menuItem.get(i).getDescription();
+        model.addRow(rowData);
+    }
+    menuItem.clear();
+}
         public void filterJTable(String sFoodName){
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            TableRowSorter<DefaultTableModel> filter = new TableRowSorter<DefaultTableModel>();
-            jTable1.setRowSorter(filter);
+            TableRowSorter filter = new TableRowSorter(model);
+            int viewColumn = jTable1.getSelectedColumn();
             
-            filter.setRowFilter(RowFilter.regexFilter(sFoodName));
+            jTable1.setRowSorter(filter);
+           if (sFoodName.trim().length() == 0) {
+                    filter.setRowFilter(null);
+                } else {
+               int columnIndex = 0;
+              // int columnIndex = jTable1.convertColumnIndexToModel(viewColumn);
+                    filter.setRowFilter(RowFilter.regexFilter("(?i)" + sFoodName,columnIndex));
+                }
+          // filter.setRowFilter(RowFilter.regexFilter(sFoodName));
         }
     /**
      * @param args the command line arguments
