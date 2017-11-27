@@ -26,16 +26,25 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="429" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextField1" min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -47,11 +56,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="205" max="-2" attributes="0"/>
-              <EmptySpace pref="64" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,29 +90,45 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Staff ID" type="java.lang.Object">
-                  <Data value="S001"/>
-                  <Data value="S002"/>
-                  <Data value="S003"/>
-                  <Data value="S004"/>
+              <Table columnCount="4" rowCount="8">
+                <Column editable="true" title="Delivery Man ID" type="java.lang.Object">
+                  <Data value="D01"/>
+                  <Data value="D02"/>
+                  <Data value="D03"/>
+                  <Data value="D04"/>
+                  <Data value="D05"/>
+                  <Data value="D06"/>
+                  <Data value="D07"/>
+                  <Data value="D08"/>
                 </Column>
-                <Column editable="true" title="Staff Name" type="java.lang.Object">
-                  <Data value="Weekh"/>
+                <Column editable="true" title="Name" type="java.lang.Object">
+                  <Data value="Cheng Wei Kit"/>
+                  <Data value="Heng Hui Jing"/>
+                  <Data value="lim jing shen"/>
+                  <Data value="Lim Jing Shen"/>
                   <Data value="ahuat"/>
-                  <Data value="Ganls"/>
-                  <Data value="leongsiah"/>
+                  <Data value="Wee Kian Huat"/>
+                  <Data value="Gan Leong Siah"/>
+                  <Data value="Lee Chong Wei"/>
                 </Column>
                 <Column editable="true" title="Contact" type="java.lang.Object">
                   <Data value="012-9395315"/>
                   <Data value="012-9221314"/>
                   <Data value="017-4542123"/>
                   <Data value="019-8012653"/>
+                  <Data value="012-1234567"/>
+                  <Data value="012-9987654"/>
+                  <Data value="019-9978756"/>
+                  <Data value="018-6789542"/>
                 </Column>
                 <Column editable="true" title="Status" type="java.lang.Object">
+                  <Data value="Available"/>
+                  <Data value="Available"/>
+                  <Data value="Available"/>
+                  <Data value="Available"/>
                   <Data value="Break"/>
-                  <Data value="Available"/>
-                  <Data value="Available"/>
+                  <Data value="Break"/>
+                  <Data value="Delivery"/>
                   <Data value="Delivery"/>
                 </Column>
               </Table>
@@ -140,6 +171,21 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delivery Man ID :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Search"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
