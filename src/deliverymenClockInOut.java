@@ -126,7 +126,7 @@ public class deliverymenClockInOut extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JOptionPane.showMessageDialog(this, "You have successfully Clock Out.\n Have a nice day! ");
+        JOptionPane.showMessageDialog(this, "You have successfully clock out.\n Have a nice day! ");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
