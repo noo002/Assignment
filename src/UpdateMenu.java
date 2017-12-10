@@ -216,7 +216,7 @@ public class UpdateMenu extends javax.swing.JFrame {
             model.setValueAt(jtfDescription.getText(),rowClicked,3);
             JOptionPane.showMessageDialog(null,"Successfully updated !");
         }else{
-            JOptionPane.showMessageDialog(null,"There is an error");
+           JOptionPane.showMessageDialog(null,"Please select a row in the table");
         }
     }//GEN-LAST:event_jbtUpdateActionPerformed
 
