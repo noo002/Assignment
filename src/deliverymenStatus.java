@@ -48,8 +48,6 @@ public class deliverymenStatus extends javax.swing.JFrame {
 
         jLabel2.setText("Delivery Man ID :");
 
-        jTextField1.setText("jTextField1");
-
         jButton2.setText("Search");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
