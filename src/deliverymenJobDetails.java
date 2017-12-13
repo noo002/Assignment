@@ -21,10 +21,11 @@ public class deliverymenJobDetails extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"S004", "Pork Chop", "B13-1, PV15, Setapak.", "12/11/2017", "4PM"}
+                {"D07", "Pork Chop", "B13-1, PV15, Setapak.", "Mr. Lee", "013-3300213", "12/11/2017", "4PM"},
+                {"D08", "Chicken Chop", "B5-12, PV12, Danau Kota.", "Mr. Wee", "018-8866124", "10/12/2017", "9AM"}
             },
             new String [] {
-                "Staff ID", "Items", "Delivery Address", "Date", "Time"
+                "Delivery Man ID", "Items", "Delivery Address", "Customer Name", "Customer Contact", "Date", "Time"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -41,15 +42,17 @@ public class deliverymenJobDetails extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(393, 393, 393)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(209, 209, 209))
             .addGroup(layout.createSequentialGroup()
-                .addGap(267, 267, 267)
+                .addGap(445, 445, 445)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -60,7 +63,7 @@ public class deliverymenJobDetails extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(54, 54, 54)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
